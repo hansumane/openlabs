@@ -20,31 +20,13 @@ static const size_t N = 8;
 static const size_t T = N / 2 + N % 2;
 
 int
-findsum(int matrix[N][N])
-{
-	int sum = 0;
-	for (size_t i = 0; i < N; ++i)
-		for (size_t j = 0; j <= i; ++j)
-			sum += matrix[i][j];
-	return sum;
-}
-
-void
-formarray(int array[N * T], int matrix[N][N])
-{
-	size_t index = 0;
-	for (size_t j = 0; j < N; j += 2)
-		for (size_t i = 0; i < N; ++i)
-			array[index++] = matrix[i][j];
-}
-
-int
 main(void)
 {
 	srand(time(NULL));
 
 	int matrix[N][N];
 	int array[N * T];
+	int sum = 0, index = 0;
 
 	for (size_t i = 0; i < N; ++i) {
 		for (size_t j = 0; j < N; ++j) {
@@ -53,12 +35,18 @@ main(void)
 		}
 		puts("\b\b ");
 	}
-	printf("sum: %d\n", findsum(matrix));
+
+	for (size_t i = 0; i < N; ++i)
+		for (size_t j = 0; j <= i; ++j)
+			sum += matrix[i][j];
+	printf("sum: %d\n", sum);
 
 	fputs("arr: ", stdout);
-	formarray(array, matrix);
-	for (size_t i = 0; i < N * T; ++i)
-		printf("%d, ", array[i]);
+	for (size_t j = 0; j < N; j += 2)
+		for (size_t i = 0; i < N; ++i) {
+			array[index] = matrix[i][j];
+			printf("%d, ", array[index++]);
+		}
 	puts("\b\b ");
 
 	return 0;
