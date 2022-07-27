@@ -33,7 +33,7 @@ main(void)
 
 		for (int i = (int)log10((double)input); i >= 0; --i)
 			/*
-			 * Вычисляем i такое, что 10^i <= input < 10^(i + 1)
+			 * Вычисляем целое i такое, что 10^i <= input < 10^(i + 1)
 			 * Например, i от 10045 = 4, так как 10^4 = 10000.
 			 */
 			if ((n = (unsigned)((double)input / pow(10.0, (double)i)) % 10u) != k)
