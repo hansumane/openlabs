@@ -13,7 +13,7 @@ main(void)
 	unsigned count = 0;
 
 	for (int i = 0; i < 10; ++i) {
-		printf("input %d number: ", i + 1);
+		printf("input array[%d]: ", i + 1);
 		scanf("%d", array + i);
 		getchar();
 		if (array[i] == 0)
